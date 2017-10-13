@@ -1,0 +1,23 @@
+.container{
+  background-color: red;
+
+  height: 600px;
+  width: 900px;
+ 
+}
+
+#image-carousel{
+  background-color: yellow;
+
+  
+  height: 250px;
+  width: 500px;
+}
+
+#images{
+  background-color: green;
+  height: 240px;
+  width: 1200px;
+
+  
+}
