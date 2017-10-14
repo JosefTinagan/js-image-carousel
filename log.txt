@@ -1,3 +1,7 @@
 10/12/2017
   - Initialized Repo
   
+10/15/2017
+	- Managed to achieve a desired result by making a parent div have a fixed size of 500px with a div nested inside it that is 2550px, and making the parent div have an overflow:hidden css class
+
+	- Try to make the functions
