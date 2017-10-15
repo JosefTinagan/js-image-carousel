@@ -5,3 +5,8 @@
 	- Managed to achieve a desired result by making a parent div have a fixed size of 500px with a div nested inside it that is 2550px, and making the parent div have an overflow:hidden css class
 
 	- Try to make the functions
+
+10/16/2017
+	- Replaced left and arrow .click event with animate instead of plain css
+
+	- Make the imaages move forward in intervals
