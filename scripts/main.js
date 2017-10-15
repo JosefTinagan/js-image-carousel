@@ -1,40 +1,40 @@
 $(document).ready(function(){
 
-	
 
 	$('#right-arrow').click(function(){
 		var current_margin = parseInt($('#images').css('margin-left'));
-		var current_margin = current_margin * -1;
+		console.log(current_margin);
 
-		if(current_margin == 2000){
+		if(current_margin == -2000){
 		  console.log("last Slide");
-		  $('#images').css('margin-left','0px');
+		  $('#images').animate({
+		    'margin-left': '0px'
+		  });
 		} else {
-			var interval = 500;
-			var margin = current_margin + interval;
-			var margin = (margin * -1) + 'px';
-			console.log("add: " + margin);
+		  $('#images').animate({
+		    'margin-left': '-=500px'
+		  });
 
-			$('#images').css('margin-left',margin);
 		}
 
 	});
 
 	$('#left-arrow').click(function(){
 		var current_margin = parseInt($('#images').css('margin-left'));
+		console.log(current_margin);
 
-		if(current_margin  == 0){
-		  console.log("first slide");
-		  $('#images').css('margin-left','-2000px')
+		if(current_margin == 0){
+		  console.log("last Slide");
+		  $('#images').animate({
+		    'margin-left': '-2000px'
+		  });
 		} else {
-			var current_margin = current_margin * -1;
-			var interval = 500;
-			var margin = current_margin - interval;
-			var margin = (margin * -1) + 'px';
-			console.log("add: " + margin);
+		  $('#images').animate({
+		    'margin-left': '+=500px'
+		  });
 
-			$('#images').css('margin-left',margin);
 		}
+
 
 	});
 	  

@@ -63,6 +63,14 @@
 
 }
 
-#images img:nth-child(2){
- 
+/* Animations */
+
+@-webkit-keyframes slide {
+  from {margin-left: 0px;}
+  to {margin-left: -500px;}
+}
+
+@keyframes slide {
+  from {margin-left: 0px;}
+  to {margin-left: 100px;}
 }
