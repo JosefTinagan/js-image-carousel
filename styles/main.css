@@ -46,7 +46,8 @@
 }
 
 #images{
-  
+  margin-left: 0px;
+
   background-color: green;
   width: 2550px;
   position: relative;
