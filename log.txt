@@ -10,3 +10,6 @@
 	- Replaced left and arrow .click event with animate instead of plain css
 
 	- Make the imaages move forward in intervals
+
+	----
+	- Try to fix the bug of animate

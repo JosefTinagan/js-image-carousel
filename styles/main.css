@@ -1,13 +1,12 @@
 .container{
-  background-color: red;
-
+ 
   height: 600px;
   width: 900px;
  
 }
 
 #image-carousel{
-  background-color: yellow;
+  
 
   position: relative;
 
@@ -38,6 +37,24 @@
 
 }
 
+#dots{
+  text-align: center;
+}
+
+.circle{
+  display: inline-block;
+  border-radius: 50px/50px;
+  border: solid 1px #f00;
+  width: 25px;
+  height: 25px;
+  border-color: blue;
+
+}
+
+.circle-background{
+  background-color: blue;
+}
+
 #image-container{
   background-color: black;
   height: 320px;
@@ -61,6 +78,16 @@
 
   margin-right: -4px;
 
+}
+
+#image-carousel{
+	background-color: yellow;
+}
+
+/* Misc */
+
+.clear{
+  clear: both;
 }
 
 /* Animations */
