@@ -1,17 +1,19 @@
 $(document).ready(function(){
 
-
+	//Events
 
 	$('#right-arrow').click(function(){
 		next();
 		clearCircle();
-		navigationCircle();
+		
 	});
 
 	$('#left-arrow').click(function(){
 		previous();
+		clearCircle()
 	});
 
+	//Functions
 	var navigationCircle = function(){
 	  var current_margin = parseInt($('#images').css('margin-left'));
 	  console.log("Navigation Circle Function");
@@ -27,10 +29,10 @@ $(document).ready(function(){
 	      $('#third_circle').addClass('circle-background');
 	    break;
 	    case -1500:
-	      $('#fourth_circle').addClass('circle-bacground');
+	      $('#fourth_circle').addClass('circle-background');
 	    break;
 	    case -2000:
-	      $('fifth_circle').addClass('circle-background');
+	      $('#fifth_circle').addClass('circle-background');
 	    break;
 
 	    default: break;
@@ -53,11 +55,11 @@ $(document).ready(function(){
 		  console.log("last Slide");
 		  $('#images').animate({
 		    'margin-left': '0px'
-		  });
+		  }, navigationCircle);
 		} else {
 		  $('#images').animate({
 		    'margin-left': '-=500px'
-		  });
+		  }, navigationCircle);
 
 		}
 
@@ -75,11 +77,11 @@ $(document).ready(function(){
 		  console.log("last Slide");
 		  $('#images').animate({
 		    'margin-left': '-2000px'
-		  });
+		  }, navigationCircle);
 		} else {
 		  $('#images').animate({
 		    'margin-left': '+=500px'
-		  });
+		  }, navigationCircle);
 
 		}
 	}
