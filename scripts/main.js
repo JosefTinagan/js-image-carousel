@@ -1,92 +1,85 @@
-$(document).ready(function(){
+$(function() {
+  var $carouselContainer = $('.carousel');
+  var $images = $('.image', $carouselContainer);
+  var $circles = $('#dots .circle');
+  var imageWidth = $images.first().width();
+  var initialMargin = 0;
+  var currentMargin = 0;
+  var imageCount = $images.length;
+  var maxMargin = imageWidth * (imageCount - 1);
+  var circleCount = $circles.length;
 
-	//Events
+  setNavigationCircle();
+ 
+  function slide(pos) {
+    $carouselContainer.animate({
+      'margin-left': pos
+    }, slideCallback);
+  }
+  
+  function slideCallback(){
+    setCurrentMargin();
+    clearNavigationCircles();
+    setNavigationCircle();
+   
+  }
 
-	$('#right-arrow').click(function(){
-		next();
-		clearCircle();
-		
-	});
+  function setCurrentMargin() {
+    currentMargin = parseInt($carouselContainer.css('margin-left'));
+ }
+ 
+ function clearNavigationCircles(){
+    $.each($circles, function(index,value){
+      $div = $('#'+value.id);
+      removeCircleBackground($div);
+    });
+  }
 
-	$('#left-arrow').click(function(){
-		previous();
-		clearCircle()
-	});
+  function setNavigationCircle(){
+    var $div = "";
+    if(currentMargin == 0){
+      $div = $('#first_circle');
+    } else if(currentMargin == -500){
+      $div = $('#second_circle');
+    } else if (currentMargin == -1000){
+      $div = $('#third_circle');
+    } else if (currentMargin == -1500){
+      $div = $('#fourth_circle');
+    } else if (currentMargin == -2000){
+      $div = $('#fifth_circle');
+    }
+    setCircleBackground($div);
+  }
+  
+  function setCircleBackground(param){
+    $(param).addClass("circle-background"); 
+  }
+  
+  function removeCircleBackground(param){
+    $(param).removeClass("circle-background");
+  }
 
-	//Functions
-	var navigationCircle = function(){
-	  var current_margin = parseInt($('#images').css('margin-left'));
-	  console.log("Navigation Circle Function");
-	  console.log(current_margin);
-	  switch(current_margin){
-	    case 0:
-	   	  $('#first_circle').addClass("circle-background");
-	    break;
-	    case -500:
-	      $('#second_circle').addClass('circle-background');
-	    break;
-	    case -1000:
-	      $('#third_circle').addClass('circle-background');
-	    break;
-	    case -1500:
-	      $('#fourth_circle').addClass('circle-background');
-	    break;
-	    case -2000:
-	      $('#fifth_circle').addClass('circle-background');
-	    break;
+  function prev() {
+    var slideMargin = '+=' + imageWidth + 'px';
+    
+    if (currentMargin === initialMargin) {
+      slideMargin = '-' + maxMargin + 'px';
+    }
 
-	    default: break;
-	  }
-	};
+    slide(slideMargin);
+  }
 
-	var clearCircle = function(){
-	  var temp_arr = ['first_circle','second_circle','third_circle','fourth_circle','fifth_circle'];
-	  for(var i = 0; i < temp_arr.length; i++){
-	    $('#'+temp_arr[i]).removeClass("circle-background");
-	  }
-	}
+  function next() {
+    var slideMargin = '-=' + imageWidth + 'px';
+    
+    if (currentMargin === -maxMargin) {
+      slideMargin = initialMargin + 'px';
+    }
+    
+    slide(slideMargin);
+  }
 
-	var next = function(){
-	  var current_margin = parseInt($('#images').css('margin-left'));
-	  console.log("next function");
-	  console.log(current_margin);
-
-		if(current_margin == -2000){
-		  console.log("last Slide");
-		  $('#images').animate({
-		    'margin-left': '0px'
-		  }, navigationCircle);
-		} else {
-		  $('#images').animate({
-		    'margin-left': '-=500px'
-		  }, navigationCircle);
-
-		}
-
-	   var test = parseInt($('#images').css('margin-left'));
-	   console.log("new value of left" +test);
-
-
-	}
-
-	var previous = function(){
-	  var current_margin = parseInt($('#images').css('margin-left'));
-		console.log(current_margin);
-
-		if(current_margin == 0){
-		  console.log("last Slide");
-		  $('#images').animate({
-		    'margin-left': '-2000px'
-		  }, navigationCircle);
-		} else {
-		  $('#images').animate({
-		    'margin-left': '+=500px'
-		  }, navigationCircle);
-
-		}
-	}
-	  
-	
-	navigationCircle();
-	
+  $('#next').on('click', next);
+  $('#prev').on('click', prev);
+  $('#do').on('click',clearNavigationCircles);
 });
