@@ -13,3 +13,7 @@
 
 	----
 	- Try to fix the bug of animate
+
+10/24/2017
+	- Refactored Code
+	
