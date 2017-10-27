@@ -97,7 +97,7 @@ $(function() {
   }
    
 
-  //Navigation Circles Functions
+	//Navigation Circles Functions
 
    function createNavCircles(){
     for(var i = 1; i <= imageCount;i++){
@@ -132,18 +132,55 @@ $(function() {
   function removeCircleBackground(param){
     $(param).removeClass("circle-background");
   }
-  $('#next').hover(test,test2);
+  $('#next').hover(mouseIn,mouseOut);
+  $('#prev').hover(mouseIn,mouseOut);
   $('#next').on('click', next);
   $('#prev').on('click', prev);
   $('#dots').on('click', jumpTo);
-  $('#do').on('click', doSomething);
+ // $('#do').on('click', checkNavigationCircle());
   
-  function test(event){
-    $(this).css({opacity: 0.5});
+  function findCurrentNavigationCircleIndex(){
+    console.log("Find Current Navigation Circle index");
+    var current_index = "";
+    for(var i = 0; i < $circles.length; i++){
+      console.log($($circles[i]).hasClass("circle-background")); 
+      if($($circles[i]).hasClass("circle-background")){
+        return i;
+      }
+    }
   }
   
-  function test2(event){
-    $(this).css({opacity: 1});
+  function findImage(flag,index){
+    if(flag == 'next'){
+      var temp = index + 1;
+      if(temp > $images.length - 1){
+        var temp = 0;
+      }
+    } else if(flag == 'prev'){
+      var temp = index - 1;
+      if(temp < 0){
+        var temp = 4;
+      }
+    }
+    return $images[temp];
+  }
+ 
+  
+  function mouseIn(event){
+    var navigation_circle_index = findCurrentNavigationCircleIndex();
+    if(event.target.id == 'next'){
+      var temp = findImage('next',navigation_circle_index);
+    } else if(event.target.id == 'prev'){
+      var temp = findImage('prev',navigation_circle_index);
+    }
+    console.log(temp);
+    $(this).addClass('next-prev-hover');
+    $(this).css({'background-image':'url(\''+temp.src+'\')'})
+  }
+  
+  function mouseOut(event){
+    $(this).removeClass('next-prev-hover');
+    $(this).css({'background-image':''});
   }
   
   function doSomething(){
